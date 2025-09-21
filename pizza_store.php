@@ -1,14 +1,20 @@
 <?php
-
-class PizzaStore{
-
-     function orderPizza(string $type){
-        function createPizza(string $type){
-            echo("Тип пиццы: " . $type);
+class PizzaStore {
+    public function orderPizza(string $type) {
+        $pizza = $this->createPizza($type);
+        if ($pizza) {
+            $pizza->prepare();
+            $pizza->cut();
+            return $pizza;
+        } else {
+            echo "Пицца типа {$type} не найдена.\n";
+            return null;
         }
-     }
+    }
 
+    protected function createPizza(string $type) {
 
+    }
 }
 
 class Pizza{
@@ -28,6 +34,6 @@ class Pizza{
     }
 
     public function cut(){
-        echo ("Данную пиццу нарезают по диагонали");
+        echo ("Данную пиццу нарезают по диагонали \n");
     } 
 }
