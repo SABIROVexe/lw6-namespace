@@ -13,7 +13,16 @@ class PizzaStore {
     }
 
     protected function createPizza(string $type) {
-
+         switch ($type) {
+            case 'pepperoni':
+                return new Pepperoni();
+            case 'cheese':
+                return new Cheese();
+            case 'meat':
+                return new Meat();
+            default:
+                return null;
+        }
     }
 }
 
@@ -37,3 +46,26 @@ class Pizza{
         echo ("Данную пиццу нарезают по диагонали \n");
     } 
 }
+
+class Pepperoni extends Pizza {
+    public function __construct() {
+        parent::__construct("Пепперони", "Томатный соус", ["Моцарелла", "Пепперони"]);
+    }
+}
+
+class Cheese extends Pizza {
+    public function __construct(){
+        parent::__construct("Сырная", "Сливочный соус", ["Моцарелла", "Чеддер", "Гауду", "Бри"]);
+    }
+}
+
+class Meat extends Pizza{
+    public function __construct(){
+        parent::__construct("Мясная", "Барбекю соус", ["Моцарелла", "Ветчина", "Бекон", "Пепперони"]);
+    }
+}
+
+$pizzaStore = new PizzaStore();
+$pizzaStore->orderPizza('pepperoni');
+$pizzaStore->orderPizza('cheese');
+$pizzaStore->orderPizza('meat');
